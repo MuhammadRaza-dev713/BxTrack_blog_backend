@@ -1,27 +1,27 @@
-// import express from "express";
-// import dotenv from "dotenv";
-// import cors from "cors";
-// import connectDB from "./config/db.js";
-// import authRoutes from "./routes/authRoutes.js";
-// import postRoutes from "./routes/postRoutes.js";
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import connectDB from "./config/db.js";
+import authRoutes from "./routes/authRoutes.js";
+import postRoutes from "./routes/postRoutes.js";
 
-// dotenv.config();
-// connectDB();
+dotenv.config();
+connectDB();
 
-// const app = express();
-// // app.use(cors());
+const app = express();
+app.use(cors());
 // app.options("*", cors());
 
-// app.use(express.json());
+app.use(express.json());
 
-// // API routes
-// app.use("/api/auth", authRoutes);
-// app.use("/api/posts", postRoutes);
+// API routes
+app.use("/api/auth", authRoutes);
+app.use("/api/posts", postRoutes);
 
-// app.get("/", (req, res) => res.send("API is running..."));
+app.get("/", (req, res) => res.send("API is running..."));
 
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 
 // import express from "express";
@@ -79,49 +79,49 @@
 
 
 
-import express from "express";
-import dotenv from "dotenv";
-import cors from "cors";
-import connectDB from "./config/db.js";
-import authRoutes from "./routes/authRoutes.js";
-import postRoutes from "./routes/postRoutes.js";
+// import express from "express";
+// import dotenv from "dotenv";
+// import cors from "cors";
+// import connectDB from "./config/db.js";
+// import authRoutes from "./routes/authRoutes.js";
+// import postRoutes from "./routes/postRoutes.js";
 
-dotenv.config();
-connectDB();
+// dotenv.config();
+// connectDB();
 
-const app = express();
+// const app = express();
 
-// ---------------------- CORS Setup ----------------------
-const allowedOrigins = [
-  process.env.FRONTEND_URL,
-  "http://localhost:3000"
-];
+// // ---------------------- CORS Setup ----------------------
+// const allowedOrigins = [
+//   process.env.FRONTEND_URL,
+//   "http://localhost:3000"
+// ];
 
-app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true); // Postman, curl
-    if (allowedOrigins.indexOf(origin) === -1) {
-      return callback(new Error("Not allowed by CORS"), false);
-    }
-    return callback(null, true);
-  },
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
-}));
+// app.use(cors({
+//   origin: function(origin, callback) {
+//     if (!origin) return callback(null, true); // Postman, curl
+//     if (allowedOrigins.indexOf(origin) === -1) {
+//       return callback(new Error("Not allowed by CORS"), false);
+//     }
+//     return callback(null, true);
+//   },
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+//   credentials: true
+// }));
 
-// Handle preflight OPTIONS requests
-app.options("*", cors());
+// // Handle preflight OPTIONS requests
+// app.options("*", cors());
 
-// ---------------------- Middleware ----------------------
-app.use(express.json());
+// // ---------------------- Middleware ----------------------
+// app.use(express.json());
 
-// ---------------------- Routes ----------------------
-app.use("/api/auth", authRoutes);
-app.use("/api/posts", postRoutes);
+// // ---------------------- Routes ----------------------
+// app.use("/api/auth", authRoutes);
+// app.use("/api/posts", postRoutes);
 
-app.get("/", (req, res) => res.send("API is running..."));
+// app.get("/", (req, res) => res.send("API is running..."));
 
-// ---------------------- Server ----------------------
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// // ---------------------- Server ----------------------
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
